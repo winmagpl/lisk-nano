@@ -1,0 +1,32 @@
+div
+  md-toolbar
+    .md-toolbar-tools
+      h2 Create wallet
+      span(flex='')
+      md-button.md-icon-button(ng-click='$ctrl.$mdDialog.hide()', aria-label='Close dialog')
+        i.material-icons close
+  div(layout='row', layout-padding, layout-align="center center")
+    div(layout-margin)
+      i.material-icons info
+    p TODO: explanation of how wallet works and how it's secure
+  md-divider
+  div(layout-padding)
+    form(name='$ctrl.createWalletForm')
+      md-input-container.md-block
+        label Choose your PIN
+        input.pin(type='password', name='pin', ng-model='$ctrl.pin', md-autofocus, required)
+        div(ng-messages='$ctrl.createWalletForm.pin.$error')
+          div(ng-message='required') Required
+      md-input-container.md-block
+        label Same PIN again
+        input.pin-again(type='password', name='pinAgain', ng-model='$ctrl.pinAgain', required)
+        div(ng-messages='$ctrl.createWalletForm.pinAgain.$error')
+          div(ng-message='required') Required
+      md-input-container.md-block
+        md-checkbox.md-primary(ng-model="$ctrl.storePassphrase", aria-label="Store passphrase") Store passphrase (encrypted by the PIN)
+      md-input-container.md-block
+        md-checkbox.md-primary(ng-model="$ctrl.autologin", aria-label="Autologin") Autologin into read-only mode
+    md-dialog-actions(layout='row')
+      md-button.md-raised.md-secondary(ng-click='$ctrl.cancel()') {{ 'Cancel' }}
+      span(flex)
+      md-button.md-raised.md-primary.submit-button(ng-disabled='!$ctrl.createWalletForm.$valid', ng-click='$ctrl.create()') Create wallet

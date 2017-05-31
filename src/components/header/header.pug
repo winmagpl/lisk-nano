@@ -23,3 +23,12 @@ md-content.header(layout='row', layout-align='center center', layout-padding)
         md-button.verify-message(ng-click='$ctrl.signVerify.openVerifyMessageDialog()')
           div(layout='row', flex='')
             p(flex='') Verify message
+      md-divider
+      md-menu-item
+        md-button.verify-message(ng-click='$ctrl.wallet.openCreateWalletDialog()')
+          div(layout='row', flex='')
+            p(flex='') Create Wallet
+      md-menu-item
+        md-button.verify-message(ng-click='$ctrl.wallet.openManageWalletDialog()')
+          div(layout='row', flex='')
+            p(flex='') Manage Wallet

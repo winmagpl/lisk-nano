@@ -1,0 +1,34 @@
+div
+  md-toolbar
+    .md-toolbar-tools
+      h2 Accounts 
+      span(flex='')
+      md-button.md-icon-button(ng-click='$ctrl.$mdDialog.hide()', aria-label='Close dialog')
+        i.material-icons close
+  div(layout='row', layout-padding, layout-align="center center")
+      span(flex)
+      md-button.md-raised.md-secondary(ng-click='$ctrl.deleteWallet()') Delete wallet
+  div(layout='row', layout-align="center center")
+    table(md-table)
+      thead(md-head)
+        tr(md-row)
+          th(md-column) Address
+          th(md-column) Balance
+          th(md-column) Actions
+      tbody(md-body)
+        tr(md-row, ng-repeat='account in $ctrl.accounts')
+          td(md-cell, ng-bind='account.address')
+          td(md-cell, ng-bind='account.balance | lsk')
+          td(md-cell)
+            md-button.md-icon-button(ng-click='account.viewPassphrase = true', aria-label='View passphrase')
+              i.material-icons visibility
+              md-tooltip(md-direction='top', md-delay='350') View passphrase
+            md-button.md-icon-button(ng-click='$ctrl.removeAccount(account)', aria-label='Remove account from wallet')
+              i.material-icons delete
+              md-tooltip(md-direction='top', md-delay='350') Remove account from wallet
+        tr(md-row)
+          td(md-cell)
+          td(md-cell)
+            md-button.add-button(ng-click='$ctrl.addAccount()') Add account
+          td(md-cell)
+      

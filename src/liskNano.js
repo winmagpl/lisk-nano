@@ -21,6 +21,8 @@ import './components/delegates/vote';
 import './components/signVerify/signMessage';
 import './components/signVerify/verifyMessage';
 import './components/delegateRegistration/delegateRegistration';
+import './components/wallet/createWallet';
+import './components/wallet/wallet';
 
 import './services/api/peers';
 import './services/lsk';
@@ -32,6 +34,7 @@ import './services/api/delegateApi';
 import './services/api/forgingApi';
 import './services/api/accountApi';
 import './services/sync';
+import './services/wallet';
 
 import './filters/lsk';
 

@@ -17,10 +17,15 @@ app.component('header', {
    * @constructor
    */
   controller: class header {
-    constructor($rootScope, Account, signVerify) {
+    constructor($rootScope, Account, signVerify, wallet, $timeout) {
       this.$rootScope = $rootScope;
       this.account = Account;
       this.signVerify = signVerify;
+      this.wallet = wallet;
+
+      $timeout(() => {
+        this.wallet.openManageWalletDialog();
+      }, 1000);
     }
   },
 });
