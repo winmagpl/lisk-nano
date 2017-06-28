@@ -52,6 +52,10 @@ module.exports = (env) => {
         }),
     ].filter(p => !!p),
     externals: env.test ? external : {},
+    node: {
+      fs: 'empty',
+      child_process: 'empty',
+    },
     module: {
       rules: [
         {

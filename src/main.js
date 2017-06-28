@@ -2,8 +2,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { IconMenu, MenuItem } from 'react-toolbox/lib/menu';
 import ReduxCounter from './components/counter';
 import Metronome from './utils/metronome';
+import Dialogs from './components/dialogs/dialogs';
 import styles from './main.css';
 import Static from './components/static';
 
@@ -11,6 +13,13 @@ class App extends React.Component {
   constructor() {
     super();
     this.ReduxCounter = ReduxCounter;
+    this.state = {
+      activeDialog: null,
+    };
+  }
+
+  setActiveDialog(name) {
+    this.setState(Object.assign({}, this.state, { activeDialog: name }));
   }
 
   componentDidMount() {
@@ -24,7 +33,16 @@ class App extends React.Component {
       <section className={styles['body-wrapper']}>
         <Router>
           <div>
+            <IconMenu className='main-menu-icon-button'
+                icon='more_vert' position='topLeft' menuRipple>
+              <MenuItem
+                className='verify-message'
+                onClick={this.setActiveDialog.bind(this, 'verify-message')}
+                caption='Verify Message' />
+            </IconMenu>
             <nav>
+            <Dialogs active={this.state.activeDialog}
+              closeDialog={this.setActiveDialog.bind(this, null)} />
               <ul>
                 <li>
                   <Link to="/">home</Link>
