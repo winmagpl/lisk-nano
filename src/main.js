@@ -8,13 +8,20 @@ import Metronome from './utils/metronome';
 import Dialogs from './components/dialogs/dialogs';
 import styles from './main.css';
 import Static from './components/static';
+import grid from '../node_modules/flexboxgrid/dist/flexboxgrid.css';
 
 class App extends React.Component {
   constructor() {
     super();
     this.ReduxCounter = ReduxCounter;
+    // TODO: use Redux for this state
     this.state = {
       activeDialog: null,
+      // TODO: implement login page
+      account: {
+        passphrase: 'wagon stock borrow episode laundry kitten salute link globe zero feed marble',
+        publicKey: 'c094ebee7ec0c50ebee32918655e089f6e1a604b83bcaa760293c61e0f18ab6f',
+      },
     };
   }
 
@@ -33,16 +40,25 @@ class App extends React.Component {
       <section className={styles['body-wrapper']}>
         <Router>
           <div>
-            <IconMenu className='main-menu-icon-button'
-                icon='more_vert' position='topLeft' menuRipple>
-              <MenuItem
-                className='verify-message'
-                onClick={this.setActiveDialog.bind(this, 'verify-message')}
-                caption='Verify Message' />
-            </IconMenu>
             <nav>
-            <Dialogs active={this.state.activeDialog}
-              closeDialog={this.setActiveDialog.bind(this, null)} />
+              <div className={`${grid.row} ${grid['end-xs']}`}>
+                <div className={grid['col-xs-6']}>
+                  <IconMenu className='main-menu-icon-button'
+                      icon='more_vert' position='topRight' menuRipple>
+                    <MenuItem
+                      className='sign-message'
+                      onClick={this.setActiveDialog.bind(this, 'sign-message')}
+                      caption='Sign Message' />
+                    <MenuItem
+                      className='verify-message'
+                      onClick={this.setActiveDialog.bind(this, 'verify-message')}
+                      caption='Verify Message' />
+                  </IconMenu>
+                </div>
+              </div>
+              <Dialogs active={this.state.activeDialog}
+                closeDialog={this.setActiveDialog.bind(this, null)}
+                account={this.state.account} />
               <ul>
                 <li>
                   <Link to="/">home</Link>
